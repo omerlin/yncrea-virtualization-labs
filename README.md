@@ -1,2 +1,2 @@
 # yncrea-virtualization-labs
-Labs for the couse yncrea-virtualization
+Labs for the course yncrea-virtualization
