@@ -8,10 +8,10 @@ if [ -e /etc/redhat-release ] ; then
 fi
 
 # create new ssh key
-[[ ! -f /home/ubuntu/.ssh/mykey ]] \
-&& mkdir -p /home/ubuntu/.ssh \
-&& ssh-keygen -f /home/ubuntu/.ssh/mykey -N '' \
-&& chown -R ubuntu:ubuntu /home/ubuntu/.ssh
+#[[ ! -f /home/ubuntu/.ssh/mykey ]] \
+#&& mkdir -p /home/ubuntu/.ssh \
+#&& ssh-keygen -f /home/ubuntu/.ssh/mykey -N '' \
+#&& chown -R ubuntu:ubuntu /home/ubuntu/.ssh
 
 # install packages
 if [ ${REDHAT_BASED} ] ; then
@@ -19,11 +19,10 @@ if [ ${REDHAT_BASED} ] ; then
   yum install -y docker ansible unzip wget
 else 
   apt-get update
-  #apt-get -y install docker.io ansible unzip python3-pip
-  apt-get -y install docker.io unzip python3-pip
+  apt-get -y install docker.io ansible unzip python3-pip
 fi
 # add docker privileges
-usermod -G docker ubuntu
+usermod -G docker vagrant
 
 # install awscli and ebcli
 # pip3 install -U awscli
