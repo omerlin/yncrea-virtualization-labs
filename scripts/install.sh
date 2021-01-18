@@ -16,10 +16,12 @@ fi
 # install packages
 if [ ${REDHAT_BASED} ] ; then
   yum -y update
-  yum install -y docker ansible unzip wget
-else 
+  #yum install -y docker ansible unzip wget
+  yum install -y docker unzip wget
+else
   apt-get update
-  apt-get -y install docker.io ansible unzip python3-pip
+  #apt-get -y install docker.io ansible unzip python3-pip
+  apt-get -y install docker.io unzip
 fi
 # add docker privileges
 usermod -G docker vagrant
