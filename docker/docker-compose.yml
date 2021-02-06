@@ -1,0 +1,23 @@
+version: "3"
+services:
+  web:
+    # build: .
+    image: app:1.0
+    command: node index-db.js
+    ports:
+      - "3000:3000"
+    restart: on-failure
+    environment:
+      MYSQL_DATABASE: myapp
+      MYSQL_USER: myapp
+      MYSQL_PASSWORD: mysecurepass
+      MYSQL_HOST: db
+  db:
+    image: woahbase/alpine-mysql:x86_64
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PWD: insecurebydefault
+      MYSQL_USER_DB: myapp
+      MYSQL_USER: myapp
+      MYSQL_USER_PWD: mysecurepass
