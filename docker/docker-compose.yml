@@ -1,8 +1,8 @@
 version: "3"
 services:
   web:
-    # build: .
-    image: app:1.0
+    build: .
+    # image: omerlin/node-app:1.0
     command: node index-db.js
     ports:
       - "3000:3000"
