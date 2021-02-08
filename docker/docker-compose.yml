@@ -14,8 +14,8 @@ services:
       MYSQL_HOST: db
   db:
     image: woahbase/alpine-mysql:x86_64
-    ports:
-      - "3306:3306"
+    expose:
+      - "3306"
     environment:
       MYSQL_ROOT_PWD: insecurebydefault
       MYSQL_USER_DB: myapp
