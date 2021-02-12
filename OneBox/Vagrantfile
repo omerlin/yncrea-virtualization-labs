@@ -7,7 +7,7 @@ Vagrant.configure(2) do |config|
 		   virtualbox__intnet: "Network1"
 		worker.vm.provision "shell", path: "../scripts/install.sh"
 		worker.vm.provider "virtualbox" do |v|
-		  v.name = "worker1"
+		  v.name = "controller"
 		  v.memory = 1024
 		  v.cpus = 1
 		end
