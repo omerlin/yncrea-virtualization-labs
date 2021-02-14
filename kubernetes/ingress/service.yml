@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloworld-svc
+spec:
+  ports:
+    - name: http
+      port: 3000
+  selector:
+    # apply service to any pod with label app: helloworld
+    app: helloworld
