@@ -1,3 +1,4 @@
-*.log
+vagrant up*.log
 .vagrant
 .idea/*
+**/*.log
