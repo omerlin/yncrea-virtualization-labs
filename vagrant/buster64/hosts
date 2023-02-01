@@ -1,0 +1,12 @@
+[kube_master]
+master1 internal_address=10.0.3.2 ansible_host=10.0.3.2
+
+[kube_worker]
+worker1 internal_address=10.0.3.6 ansible_host=10.0.3.6
+worker2 internal_address=10.0.3.7 ansible_host=10.0.3.7
+
+[operations_node]
+controller internal_address=10.0.3.10 ansible_host=10.0.3.10
+
+[any]
+master1

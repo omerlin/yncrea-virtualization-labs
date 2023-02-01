@@ -1,0 +1,56 @@
+# "2" means version "2" of the configuratin object
+Vagrant.configure(2) do |config|
+
+	# master node
+	config.vm.define "master1" do |master|
+		master.vm.allow_hosts_modification = true
+		master.vm.hostname = "master1"
+		master.vm.box = "buster64"
+			master.vm.network "private_network", ip: "10.0.3.2",
+			   virtualbox__intnet: "Network1"
+			master.vm.provision "shell", path: "./scripts/patch_auth.sh"
+			master.vm.provider "virtualbox" do |v|
+			  v.name = "master1"
+			  v.memory = 4096
+			  v.cpus = 2
+			end
+		end
+
+	#
+	# Workers
+	# We add "5" to "i" in the Ip adress so 10.0.3.6 & 10.0.3.7
+	#
+	(1..2).each do |i|
+		config.vm.define "worker#{i}" do |worker|
+		worker.vm.allow_hosts_modification = true
+		worker.vm.hostname = "worker#{i}"
+		worker.vm.box = "buster64"
+			worker.vm.network "private_network", ip: "10.0.3.#{i+5}",
+			virtualbox__intnet: "Network1"
+			worker.vm.provision "shell", path: "./scripts/patch_auth.sh"
+			worker.vm.provider "virtualbox" do |v|
+				v.name = "worker#{i}"
+				v.memory = 4096
+				v.cpus = 2
+			end
+		end
+	end
+
+	# Controller node (ansible is here)
+	config.vm.define "controller" do |worker|
+		worker.vm.allow_hosts_modification = true
+		worker.vm.hostname = "controller"
+		worker.vm.box = "buster64"
+			worker.vm.network "private_network", ip: "10.0.3.10",
+			   virtualbox__intnet: "Network1"
+			worker.vm.provision "shell", path: "./scripts/install_operation.sh"
+			worker.vm.provider "virtualbox" do |v|
+			  v.name = "controller"
+			  v.memory = 1024
+			  v.cpus = 1
+			end
+		end
+	
+end
+
+
