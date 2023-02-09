@@ -1,9 +1,9 @@
-FROM python:alpine3.14
+FROM python:3.9-slim-buster
 
 RUN mkdir /app
 WORKDIR /app
 ADD . /app/
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 
 EXPOSE 5000
-CMD ["python", "/app/hello.py"]
+CMD ["python", "/app/main.py"]
